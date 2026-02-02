@@ -33,6 +33,19 @@ const int buzzer = 2;
 void setup() {
  Serial.begin(9600);
  pinMode(buzzer, OUTPUT);
+ 
+ //indicator of power on
+  digitalWrite(buzzer, HIGH);
+  delay(100);
+  digitalWrite(buzzer,LOW);
+  //Sart up phase for sensor to heat and give stable readings (5 minutes)  delay(100);
+  for(int t = 0; t < 300 ; t++){
+    delay(1000);
+  }
+  //chirp indicating end of warm up
+  digitalWrite(buzzer, HIGH);
+  delay(100);
+  digitalWrite(buzzer, LOW);
 }
 void loop() {
   //printing ouputs for debugging and calibration
@@ -44,16 +57,15 @@ void loop() {
       sensorVal = analogRead(smokeRead);
       total = total + sensorVal;
   }
-    aveSmoke = total/sample;
-    Serial.println(sensorVal);
+    aveSmoke = (float)total/sample;
     Serial.println(aveSmoke);
-  //THRESHOLD SHOULD BE SET HERE WHEN CALIBRATING IN PLACE OF 670
-  if(aveSmoke > 670 ){
+  //buzzer condition
+  if(aveSmoke > 500 ){
     digitalWrite(buzzer, HIGH);
   }
   else{
     digitalWrite(buzzer, LOW);
-  }
+  } 
   delay(500);
 }
 ```
