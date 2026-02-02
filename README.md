@@ -70,7 +70,7 @@ void loop() {
 }
 ```
 Note that the sensor takes time to give stable readings so the code has a 5 minute warm up time for the sensor.
-------------
+
 Circuit connection:
 1) Connect MQ-2 AO pin into A0 pin on arduino
 2) Connect MQ-2 GND pin to GND on arduino or breadboard
