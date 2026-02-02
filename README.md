@@ -59,6 +59,11 @@ void loop() {
 ```
 ------------
 Circuit connection:
+1) Connect MQ-2 AO pin into A0 pin on arduino
+2) Connect MQ-2 GND pin to GND on arduino or breadboard
+3) Connect MQ-2 VCC to 5V pin on arduino
+4) Connect positive pin of buzzer(marked with +) to digital output pin 2 on arduino
+5) Conncet other pin on buzzer to GND
 
 
 
