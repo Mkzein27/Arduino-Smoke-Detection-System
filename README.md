@@ -25,6 +25,37 @@ Hardware:
 Software:
 1) Arduino IDE
 -----------------
+Arduino Code:
+```cpp
+const int smokeRead = A0;
+const int buzzer = 2;
 
+void setup() {
+ Serial.begin(9600);
+ pinMode(buzzer, OUTPUT);
+}
+void loop() {
+  //printing ouputs for debugging and calibration
+  float aveSmoke = 0;
+  int sample = 5;
+  int total =0;
+  int sensorVal = 0;
+  for(int i = 0; i< sample;i++  ){
+      sensorVal = analogRead(smokeRead);
+      total = total + sensorVal;
+  }
+    aveSmoke = total/sample;
+    Serial.println(sensorVal);
+    Serial.println(aveSmoke);
+  //THRESHOLD SHOULD BE SET HERE WHEN CALIBRATING IN PLACE OF 670
+  if(aveSmoke > 670 ){
+    digitalWrite(buzzer, HIGH);
+  }
+  else{
+    digitalWrite(buzzer, LOW);
+  }
+  delay(500);
+}
+```
 
 
